@@ -18,4 +18,3 @@ jobs:
           ARGS: '-rlgoDzvc -i --exclude=.env --delete'
           SCRIPT_AFTER: 'cd ${{ secrets.TARGET }} && npm ci && ~/.npm-global/bin/pm2 restart "Actions Demo"'
           SCRIPT_AFTER_REQUIRED: true
-
