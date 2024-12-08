@@ -21,16 +21,6 @@ app.get('/tag', (req, res) => {
   });
 });
 
-app.get('/describe', (req, res) => {
-  exec('git describe', (err, stdout, stderr) => {
-    if (err) {
-      res.status(500).send(`Error: ${stderr}`);
-      return;
-    }
-    res.send(`Success: ${stdout.trim()}`);
-  });
-});
-
 app.get('/list', (req, res) => {
   fs.readdir('.', { withFileTypes: true }, (err, files) => {
     if (err) {
