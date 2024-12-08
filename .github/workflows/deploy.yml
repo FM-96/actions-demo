@@ -16,5 +16,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           TARGET: ${{ secrets.TARGET }}
           ARGS: '-rlgoDzvc -i --exclude=.env --delete'
-          SCRIPT_AFTER: 'cd ${{ secrets.TARGET }} && npm ci && ~/.npm-global/bin/pm2 restart "${{ vars.PM2_NAME }}"'
+          SCRIPT_AFTER: 'cd ${{ secrets.TARGET }} && npm ci && ~/.npm-global/bin/pm2 restart "${{ vars.PM2_NAME }}" > /dev/null'
           SCRIPT_AFTER_REQUIRED: true
