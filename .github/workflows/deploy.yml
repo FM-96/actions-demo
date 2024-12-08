@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v5.1.0
+        with:
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          TARGET: ${{ secrets.TARGET }}
+          ARGS: '-rlgoDzvc -i --exclude=.env --delete'
+          SCRIPT_AFTER: 'npm ci && pm2 restart "Actions-Demo"'
+          SCRIPT_AFTER_REQUIRED: true
+
